@@ -3,7 +3,7 @@
 <div class="flex flex-col rounded-lg shadow-lg overflow-hidden">
 
         <div class="flex-shrink-0">
-            <img class="h-58 w-full object-cover" src="https://images.unsplash.com/photo-1547586696-ea22b4d4235d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1679&q=80" alt=" ">
+            <img class="h-58 w-full object-cover" src="{{ asset('storage/' . $compaign->thumbnail) }}" alt=" ">
         </div>
 
         <div class="flex-1 bg-white p-6 flex flex-col justify-between">
@@ -22,7 +22,7 @@
                 <div class="flex-shrink-0">
                     <a href="#">
                         <span class="sr-only"> {{ $compaign->user->name }} </span>
-                        <img class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                        <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/104?id={{ $compaign->user->id }}" alt="">
                     </a>
                 </div>
 

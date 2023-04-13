@@ -25,6 +25,12 @@ class CompaignFactory extends Factory
             'slug' => $this->faker->slug(),
             'excerpt' => '<p>' . implode('</p><p>' , $this->faker->paragraphs(2)) . '</p>',
             'body' => '<p>' . implode('</p><p>' , $this->faker->paragraphs(8)) . '</p>',
+            'country' => $this->faker->sentence(),
+            'address' => $this->faker->sentence(),
+            'city' => $this->faker->sentence(),
+            'region' => $this->faker->sentence(),
+            'postal' => $this->faker->sentence(),
+
         ];
     }
 }

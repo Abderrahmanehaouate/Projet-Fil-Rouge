@@ -34,10 +34,19 @@ class CompaignController extends Controller
             'slug' => ['required', Rule::unique('compaigns', 'slug')],
             'excerpt' => 'required',
             'body' => 'required',
+            'thumbnail' => 'required|image',
+            'country' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'region' => 'required',
+            'postal' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
         ]);
 
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = request()
+            ->file('thumbnail')
+            ->store('thumbnails');
 
         Compaign::create($attributes);
 
