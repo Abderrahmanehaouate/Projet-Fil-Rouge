@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompaignController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,7 @@ Route::get('/', [CompaignController::class , 'index'] )->name('home');
 
 Route::get('/donation', [CompaignController::class , 'donation'] )->name('donation');
 Route::get('compaigns/{compaign:slug}', [CompaignController::class, 'show']);
+Route::post('compaigns/{compaign:slug}/comments', [CommentController::class , 'store'] );
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
@@ -31,11 +33,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('dashboard.dashboard', [
             'compaigns' => Auth::user()->compaigns,
         ]);} )->name('dashboard');
-    
-        Route::view('dashboard/create', 'dashboard.create')->name('dashboard.create');
-
+        
         Route::post('/dashboard/dashboard', [CompaignController::class, 'store']);
-            // Route::delete('/dashboard', [ProfileController::class, 'create'])->name('dashboard.create');
+        Route::view('dashboard/create', 'dashboard.create')->name('dashboard.create');
+        Route::get('/dashboard/{compaign}/edit', [CompaignController::class, 'edit']);
+        Route::get('/dashboard/{compaign:slug}', [CompaignController::class, 'show']);
+        Route::patch('dashboard/dashboard/{compaign}', [CompaignController::class, 'update']);
+        Route::delete('dashboard/dashboard/{compaign}', [CompaignController::class, 'destroy']);
+
 });
 
 Route::middleware('auth')->group(function () {

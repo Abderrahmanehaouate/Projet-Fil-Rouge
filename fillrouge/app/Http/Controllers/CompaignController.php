@@ -62,13 +62,40 @@ class CompaignController extends Controller
 
     public function edit(Compaign $compaign)
     {
+        return view('dashboard.edit',
+        ['compaign' => $compaign,
+    ]);
     }
 
     public function update(Request $request, Compaign $compaign)
     {
+        $attributes = request()->validate([
+
+            'title' => 'required',
+            'slug' => ['required', Rule::unique('compaigns', 'slug')->ignore($compaign->id)],
+            'excerpt' => 'required',
+            'body' => 'required',
+            'thumbnail' => 'image',
+            'country' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'region' => 'required',
+            'postal' => 'required',
+            'category_id' => ['required', Rule::exists('categories', 'id')],
+
+        ]);
+
+        if (isset($attributes['thumbnail'])) {
+            $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
+        }
+        $compaign->update($attributes);
+        return redirect('/dashboard')->with('success', 'Post Updated!');
     }
 
     public function destroy(Compaign $compaign)
     {
+        $compaign->delete();
+
+        return back();
     }
 }

@@ -89,10 +89,10 @@
         <a href="#" class="flex-shrink-0 group block">
         <div class="flex items-center">
             <div>
-            <img class="inline-block h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+            <img class="inline-block h-10 w-10 rounded-full" src="https://i.pravatar.cc/104?u={{ auth()->id() }}" alt="">
             </div>
             <div class="ml-3">
-            <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">Tom Cook</p>
+            <p class="text-base font-medium text-gray-700 group-hover:text-gray-900">{{ Auth::user()->name }}</p>
             <p class="text-sm font-medium text-gray-500 group-hover:text-gray-700">View profile</p>
             </div>
         </div>
@@ -172,7 +172,7 @@
     <x-nav-link :href="route('profile.edit')" class="flex-shrink-0 w-full group block">
     <div class="flex items-center">
             <div>
-            <img class="inline-block h-9 w-9 rounded-full" src="https://i.pravatar.cc/104?id={{ Auth::user()->id }}" alt="">
+            <img class="inline-block h-9 w-9 rounded-full" src="https://i.pravatar.cc/104?u={{ auth()->id() }}" alt="">
             </div>
             <div class="ml-3">
             <p class="text-sm font-medium text-gray-700 group-hover:text-gray-900">{{ Auth::user()->name }}</p>

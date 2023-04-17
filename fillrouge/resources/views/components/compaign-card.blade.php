@@ -24,6 +24,7 @@
                         <span class="sr-only"> {{ $compaign->user->name }} </span>
                         <img class="h-10 w-10 rounded-full" src="https://i.pravatar.cc/104?id={{ $compaign->user->id }}" alt="">
                     </a>
+                    
                 </div>
 
             <div class="ml-3">
@@ -33,8 +34,10 @@
 
                 <div class="flex space-x-1 text-sm text-gray-500">
                     <time datetime="2020-03-10"> {{ $compaign->created_at->diffForHumans() }} </time>
-                    <span aria-hidden="true"> &middot; </span>
-                    <span> 4 min read </span>
+                </div>
+                <div class="flex space-x-10  text-md text-gray-500">
+                <span> 26 dons</span>
+                    <span>360 € dons récoltés </span>
                 </div>
             </div>
         </div>
