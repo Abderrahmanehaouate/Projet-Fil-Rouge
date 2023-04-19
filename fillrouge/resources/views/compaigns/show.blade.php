@@ -4,7 +4,7 @@
         <div class="container px-6 py-10 mx-auto">
             <div class="mt-8 lg:-mx-6 lg:flex gap-2 lg:items-start">
                 <div class="lg:w-1/2">
-                    <img class="w-full  rounded-xl h-92 h-96" src="{{ asset('storage/' . $compaign->thumbnail) }}" alt="">
+                    <img class="w-full object-cover rounded-xl w-92 h-96" src="{{ asset('storage/' . $compaign->thumbnail) }}" alt="">
                     <div class="my-10">
                         <div class="flex items-start my-10 mx-4">
                             <img class="object-cover object-center w-14 h-14 rounded-full" src="https://i.pravatar.cc/104?id={{ $compaign->user->id }}" alt="">
@@ -13,20 +13,30 @@
 
                                 <div>
                                     <h1 class="text-lg text-gray-700 font-semibold dark:text-gray-700">{{ $compaign->user->name }}</h1>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Lead Developer</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Lead Developer </p>
                                 </div>
 
                                 <div class="lg:ml-20">
-                                    <p class="text-md text-gray-500 dark:text-gray-700">360 € dons récoltés</p>
-                                    <h1 class="text-sm text-gray-700 dark:text-gray-500">26 dons</h1>
+                                    <p class="text-md text-gray-500 dark:text-gray-700">{{ $compaign->soutiens->sum('amount') }} € dons récoltés</p>
+                                    <p class="text-sm text-gray-700 dark:text-gray-500">Number of dons: {{ $compaign->soutiens->count() }}</p>
                                 </div>
-
                             </div>
-
                         </div>
+
+
+                        
                             <div class="flex justify-center mt-8">
-                                <button class="bg-green-500 m-5 hover:bg-green-700 text-white font-bold py-2 px-5 border border-blue-700 rounded">Je soutiens</button>
-                                
+                                <form action="{{ route('checkout', ['compaign' => $compaign]) }}" method="POST">
+                                    @csrf
+                                        <div class="flex items-center">
+                                            <label for="donation-amount">
+                                                <x-application-logo class="w-10 h-10 mr-2 text-gray-600" />
+                                            </label>
+                                            <input type="number" min="1" id="amount" name="amount" class="py-2 px-3 rounded-md border border-gray-400 focus:outline-none focus:border-blue-500" placeholder="Enter donation amount" autocomplete="off">
+                                            <input type="hidden" name="compaign_id" value="{{ $compaign->id }}">
+                                            <button class="bg-green-500 m-5 hover:bg-green-700 text-white font-bold py-2 px-5 border border-blue-700 rounded">Je soutiens</button>
+                                        </div>
+                                </form>
                                 <button class="bg-blue-500 m-5 hover:bg-blue-700 text-white font-bold py-2 px-5 border border-blue-700 rounded"> Contact </button>
                             </div>
                         </div>

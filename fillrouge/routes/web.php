@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CompaignController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\StripeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,11 @@ use App\Models\Compaign;
 */
 
 Route::get('/', [CompaignController::class , 'index'] )->name('home');
+
+
+Route::get('/ ', [StripeController::class , 'index'] )->name('index');
+Route::post('/checkout', [StripeController::class , 'checkout'])->name('checkout');
+Route::get('/success', [StripeController::class , 'success'])->name('success');
 
 Route::get('/donation', [CompaignController::class , 'donation'] )->name('donation');
 Route::get('compaigns/{compaign:slug}', [CompaignController::class, 'show']);

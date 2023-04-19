@@ -36,8 +36,8 @@
                     <time datetime="2020-03-10"> {{ $compaign->created_at->diffForHumans() }} </time>
                 </div>
                 <div class="flex space-x-10  text-md text-gray-500">
-                <span> 26 dons</span>
-                    <span>360 € dons récoltés </span>
+                <span>  {{ $compaign->soutiens->count() }} dons</span>
+                    <span>{{ $compaign->soutiens->sum('amount') }} € dons récoltés </span>
                 </div>
             </div>
         </div>

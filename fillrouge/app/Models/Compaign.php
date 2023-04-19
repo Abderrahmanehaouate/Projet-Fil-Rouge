@@ -18,6 +18,11 @@ class Compaign extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
+    public function soutiens()
+    {
+        return $this->hasMany(Soutien::class);
+    }
     
     public function category()
     {
