@@ -43,12 +43,12 @@ class StripeController extends Controller
             ],
             'mode' => 'payment',
             'success_url' => route('success', $data),
-            'cancel_url' => route('home'),
+            'cancel_url' => route('home'), 
         ]);
         return redirect()->away($session->url);
     }
 
-    public function success(Compaign $compaign, Request $request)
+    public function success(Request $request)
     {
         $soutienData = [
             'amount' => $request->input('amount'),
@@ -68,6 +68,6 @@ class StripeController extends Controller
             ]
         );
 
-        return redirect('/');
+        return redirect('/donated')->with('success' , 'Your donation has been delevred , thank you for help peaple , that\'s make our world great becuase of you');
     }
 }

@@ -6,6 +6,7 @@
 
         <title>Fill Rouge Project</title>
         <script src="https://cdn.tailwindcss.com"></script>
+        <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     </head>
@@ -35,8 +36,8 @@
 
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')"> {{ __('Home') }} </x-nav-link>
                 <x-nav-link :href="route('donation')" :active="request()->routeIs('donation')"> {{ __('Donation') }} </x-nav-link>
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"> {{ __('About us') }} </x-nav-link>
-                <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')"> {{ __('Cantact us') }} </x-nav-link>
+                <x-nav-link :href="route('about')" :active="request()->routeIs('about')"> {{ __('About us') }} </x-nav-link>
+                <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')"> {{ __('Cantact us') }} </x-nav-link>
             </div>
         </div>
         @if (Route::has('login'))
@@ -175,7 +176,7 @@
                 </svg>
             </a>
         </div>
-            <p class="mt-8 text-center text-base text-gray-400">&copy; 2020 Workflow, Inc. All rights reserved.</p>
+            <p class="mt-8 text-center text-base text-gray-400">&copy; 2020 Elkhayer, Inc. All rights reserved.</p>
         </div>
 </footer>
 

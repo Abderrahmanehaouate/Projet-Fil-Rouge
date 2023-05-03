@@ -12,6 +12,21 @@ class Compaign extends Model
     protected $with = ['category', 'user'];
 
 
+    public function scopeFilter($query , array $filters){
+
+        $query->when($filters['category'] ?? false, fn($query, $category) =>
+            $query->whereHas('category', fn ($query) =>
+                $query->where('slug', $category)
+            )
+        );
+
+        $query->when($filters['user'] ?? false, fn($query, $user) =>
+            $query->whereHas('user', fn ($query) =>
+                $query->where('name', $user)
+            )
+        );
+
+    }
 
 
     public function comments()

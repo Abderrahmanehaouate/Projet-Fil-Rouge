@@ -1,12 +1,13 @@
 <x-layout>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
-<div class="bg-white">
+<div class="bg-white 0">
     <main>
+        <x-flash />
     <div>
         <!-- Hero card -->
         <div class="relative">
-        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100"></div>
+        <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gray-100" ></div>
             <div class="relative shadow-xl  sm:overflow-hidden">
             <div class="absolute inset-0" style="background-size: cover;">
                 <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=2830&q=80&sat=-100" alt="People working on laptops">
@@ -35,37 +36,40 @@ Une équipe internationale s'occupe exclusivement de la fiabilité et de la séc
     @if ($compaigns->count())
       <x-compaigns-grid :compaigns="$compaigns" />
     @else
+
       <p class="text-center mt-10"> No compaigns yet . Please check back later.  </p>
     @endif
 
+    
+    <div class="relative 0 bg-gray-100">
     <section aria-labelledby="category-heading" class="pt-24 sm:pt-32 xl:max-w-7xl xl:mx-auto xl:px-8 mb-5">
-    <div class="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
-        <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900">Find your type to donate with Category</h2>
-    </div>
+        <div class="px-4 sm:px-6 sm:flex sm:items-center sm:justify-between lg:px-8 xl:px-0">
+            <h2 id="category-heading" class="text-2xl font-extrabold tracking-tight text-gray-900 ">Find your type to donate with Category</h2>
+        </div>
 
-    <div class="mt-4 flow-root">
-        <div class="-my-2">
-            <div class="box-content py-2 relative h-80 overflow-x-auto xl:overflow-visible">
-                <div class="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">
+        <div class="mb-4 flow-root">
+            <div class="my-2">
+                <div class="box-content py-2 relative h-80 overflow-x-auto xl:overflow-visible">
+                    <div class="absolute min-w-screen-xl px-4 flex space-x-8 sm:px-6 lg:px-8 xl:relative xl:px-0 xl:space-x-0 xl:grid xl:grid-cols-5 xl:gap-x-8">
 
-                    @foreach (\App\Models\Category::all() as $category )
-                        <a href="#" class="relative w-56 h-80 rounded-lg p-6 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto">
-                            <span aria-hidden="true" class="absolute inset-0">
-                            <!-- <img src="https://tailwindui.com/img/ecommerce-images/home-page-01-category-01.jpg" alt="" class="w-full h-full object-center object-cover"> -->
-                            </span>
-                            <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"></span>
-                            <span class="relative mt-auto text-center text-xl font-bold text-white"> {{ ucwords($category->name) }} </span>
-                        </a>
-                    @endforeach
+                    @foreach (\App\Models\Category::all() as $category)
+                            <a href="/categories/{{ $category->slug }}" class="relative w-56 h-80 rounded-lg p-6 flex flex-col overflow-hidden hover:opacity-75 xl:w-auto">
+                                <span aria-hidden="true" class="absolute inset-0">
+                                    <img src="https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=712&q=80" alt="" class="w-full h-full object-center object-cover">
+                                </span>
+                                <span aria-hidden="true" class="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-gray-800 opacity-50"></span>
+                                <span class="relative mt-auto text-center text-xl font-bold text-white"> {{ ucwords($category->name) }} </span>
+                            </a>
+                        @endforeach
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="mt-6 px-4 sm:hidden">
-        <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">Browse all categories<span aria-hidden="true"> &rarr;</span></a>
-    </div>
+        <div class="mt-6 px-4 sm:hidden">
+            <a href="#" class="block text-sm font-semibold text-indigo-600 hover:text-indigo-500">Browse all categories<span aria-hidden="true"> &rarr;</span></a>
+        </div>
     </section>
 
 
@@ -79,7 +83,8 @@ Une équipe internationale s'occupe exclusivement de la fiabilité et de la séc
 
 
 
-<div class="relative bg-gray-900">
+
+<div class="relative bg-gray-900 0">
     <div class="h-80 w-full absolute bottom-0 xl:inset-0 xl:h-full">
         <div class="h-full w-full xl:grid xl:grid-cols-2">
             <div class="h-full xl:relative xl:col-start-2">

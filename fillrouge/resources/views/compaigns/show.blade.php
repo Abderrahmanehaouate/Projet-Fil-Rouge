@@ -3,7 +3,7 @@
 
         <div class="container px-6 py-10 mx-auto">
             <div class="mt-8 lg:-mx-6 lg:flex gap-2 lg:items-start">
-                <div class="lg:w-1/2">
+                <div class="lg:w-1/2 lg:sticky top-5">
                     <img class="w-full object-cover rounded-xl w-92 h-96" src="{{ asset('storage/' . $compaign->thumbnail) }}" alt="">
                     <div class="my-10">
                         <div class="flex items-start my-10 mx-4">
@@ -17,14 +17,13 @@
                                 </div>
 
                                 <div class="lg:ml-20">
-                                    <p class="text-md text-gray-500 dark:text-gray-700">{{ $compaign->soutiens->sum('amount') }} € dons récoltés</p>
-                                    <p class="text-sm text-gray-700 dark:text-gray-500">Number of dons: {{ $compaign->soutiens->count() }}</p>
+                                <span class="inline-block px-1 leading-none bg-green-200 text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs" >&nbsp;<span class="font-bold text-lg"> {{ $compaign->soutiens->sum('amount') }},00 </span>&nbsp;<span class="text-sm font-semibold">€ &nbsp;</span><span class="text-sm-5 text-gray-500">dons récoltés</span></span> 
+                                    <span class="inline-block px-2 py-1 leading-none  text-orange-800 rounded-full font-semibold uppercase tracking-wide text-xs">  {{ $compaign->soutiens->count() }} dons</span>
                                 </div>
+
                             </div>
                         </div>
 
-
-                        
                             <div class="flex justify-center mt-8">
                                 <form action="{{ route('checkout', ['compaign' => $compaign]) }}" method="POST">
                                     @csrf
@@ -37,15 +36,17 @@
                                             <button class="bg-green-500 m-5 hover:bg-green-700 text-white font-bold py-2 px-5 border border-blue-700 rounded">Je soutiens</button>
                                         </div>
                                 </form>
-                                <button class="bg-blue-500 m-5 hover:bg-blue-700 text-white font-bold py-2 px-5 border border-blue-700 rounded"> Contact </button>
+                                <button class="bg-blue-500 m-5 hover:bg-blue-700 text-white font-bold py-2 px-5 border border-blue-700 rounded"> <a href="/chatify/{{ $compaign->user->id }}">Contact</a></button>
                             </div>
                         </div>
                 </div>
 
                 <div class="mt-6 lg:w-1/2 lg:mt-0 lg:mx-6 ">
-                    <a href="">
-                        <p class="text-sm text-blue-500 uppercase">{{ $compaign->category->name }}</p>
+                <div class="space-x-2">
+                    <a href="/categories/{{ $compaign->category->slug }}">
+                    <x-category-button :category="$compaign->category" />
                     </a>
+                </div>
 
                     <a href="#" class="block mt-4 text-2xl font-semibold text-gray-800 hover:underline dark:text-black">
                         {{ $compaign->title }}

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Compaign;
+use App\Models\Category;
 use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 
 class CompaignController extends Controller
 {
+
     public function index()
     {
         return view('compaigns.index', [
@@ -15,16 +17,35 @@ class CompaignController extends Controller
         ]);
     }
 
+
+    public function contact()
+    {
+        return view('compaigns.contact');
+    }
+
+    public function donated()
+    {
+        return view('compaigns.donated');
+    }
+
+    public function about()
+    {
+        return view('compaigns.about');
+    }
+
     public function donation()
     {
         return view('compaigns.donation', [
-            'compaigns' => Compaign::all(),
+            
+            'compaigns' => Compaign::latest()->filter(
+                request(['category', 'user']))
+                ->get(),
         ]);
     }
 
     public function create()
     {
-        return view('dashboard.dashboard');
+        return view('dashboard.dashboard'); 
     }
 
     public function store()
@@ -41,6 +62,7 @@ class CompaignController extends Controller
             'region' => 'required',
             'postal' => 'required',
             'category_id' => ['required', Rule::exists('categories', 'id')],
+
         ]);
 
         $attributes['user_id'] = auth()->id();
@@ -56,7 +78,9 @@ class CompaignController extends Controller
     public function show(Compaign $compaign)
     {
         return view('compaigns.show', [
+
             'compaign' => $compaign,
+
         ]);
     }
 

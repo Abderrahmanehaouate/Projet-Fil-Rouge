@@ -8,28 +8,57 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 use App\Models\Compaign;
+use App\Models\Category;
+use App\Models\User;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
 Route::get('/', [CompaignController::class , 'index'] )->name('home');
+
+Route::get('/contact', [CompaignController::class , 'contact'] )->name('contact');
+
 
 
 Route::get('/ ', [StripeController::class , 'index'] )->name('index');
 Route::post('/checkout', [StripeController::class , 'checkout'])->name('checkout');
 Route::get('/success', [StripeController::class , 'success'])->name('success');
 
+
+Route::get('/contact', [CompaignController::class , 'contact'])->name('contact');
+Route::get('/about', [CompaignController::class , 'about'])->name('about');
+Route::get('/donated', [CompaignController::class , 'donated'])->name('donated');
+
 Route::get('/donation', [CompaignController::class , 'donation'] )->name('donation');
 Route::get('compaigns/{compaign:slug}', [CompaignController::class, 'show']);
 Route::post('compaigns/{compaign:slug}/comments', [CommentController::class , 'store'] );
+
+
+
+
+
+Route::get('users/{user:name}' , function (User $user){
+    return view ('compaigns.donation', [
+        'compaigns' => $user->compaigns,
+    ]);
+});
+
+Route::get('users/{user:name}' , function (User $user){
+    return view ('compaigns.index', [
+        'compaigns' => $user->compaigns,
+
+    ]);
+});
+Route::get('categories/{category:slug}' , function (Category $category){
+    return view ('compaigns.index', [
+        'compaigns' => $category->compaigns,
+
+    ]);
+});
+Route::get('categories/{category:slug}' , function (Category $category){
+    return view ('compaigns.donation', [
+        'compaigns' => $category->compaigns,
+
+    ]);
+});
 
 
 Route::middleware(['auth', 'verified'])->group(function () {

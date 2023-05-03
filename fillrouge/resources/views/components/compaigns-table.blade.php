@@ -48,8 +48,8 @@
                                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                                     <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">approved </span>
                                 </td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">1987 $</td>
-                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">34 personne</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $compaign->soutiens->sum('amount') }} $</td>
+                                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ $compaign->soutiens->count() }} personne</td>
                                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                     <a href="/dashboard/{{ $compaign->id }}/edit" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, Lindsay Walton</span></a>
                                 </td>

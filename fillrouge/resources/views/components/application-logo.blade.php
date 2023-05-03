@@ -1,3 +1,5 @@
+
+<a href="/">
 <svg version="1.0" xmlns="http://www.w3.org/2000/svg" {{ $attributes }}
  width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -57,3 +59,4 @@ l51 -19 0 -67 c0 -58 3 -69 22 -82 29 -20 34 -20 58 4 16 16 20 33 20 83 l0
 -9 -150 6 -159 7 -5 23 -9 36 -9 72 0 82 301 15 439 -20 41 -60 53 -83 26z"/>
 </g>
 </svg>
+</a>
